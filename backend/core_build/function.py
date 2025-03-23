@@ -1,5 +1,4 @@
 import numpy as np
-from fastapi import Fastapi
 
 
 class MathFunction:
@@ -19,10 +18,10 @@ class AllFunction:
         self.function[name] = MathFunction(name, function)
 
     def get_f(self, name):
-        return self.functions.get(name, None)
+        return self.function.get(name, None)
 
     def list_f(self):
-        return list(self.fucntions.keys())
+        return list(self.function.keys())
 
 
 f_register = AllFunction()
@@ -33,3 +32,5 @@ f_register.register("saddle", lambda x, y: x**2 - y**2)
 f_register.register("abs", lambda x, y: np.abs(x) + np.abs(y))
 f_register.register("sin", lambda x, y: np.sin(x) * np.cos(y))
 f_register.register("gaussian", lambda x, y: np.exp(-(x**2 + y**2)))
+f_register.register("sigmoid", lambda x, y: 1 / (1 + np.exp(-x)))
+f_register.register("tanh", lambda x, y: np.tanh(x))
